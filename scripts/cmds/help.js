@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const path = require('path');
 
@@ -106,41 +105,30 @@ module.exports = {
 					await sendMessage(`❌ Command not found: ${commandName}`, event.threadID);
 				}
 			} else {
-				// Stage 1: Show categories with serial numbers
-				const categories = getCategories();
-				const categoryNames = Object.keys(categories).sort();
-				
+				const commands = [];
+				for (const file of files) {
+					try {
+						const cmd = require(path.join(cmdsFolderPath, file));
+						if (cmd.config && cmd.config.name) {
+							commands.push(cmd.config.name);
+						}
+					} catch (e) {}
+				}
+				commands.sort();
+
 				let helpMessage = '╭─────────────────────◊\n';
-				helpMessage += '│     📋 COMMAND CATEGORIES\n';
+				helpMessage += '│     📋 COMMANDES\n';
 				helpMessage += '├─────────────────────◊\n';
 				
-				categoryNames.forEach((category, index) => {
-					const commandCount = categories[category].length;
-					helpMessage += `│ ${index + 1}. ${category.charAt(0).toUpperCase() + category.slice(1)}\n`;
-					helpMessage += `│    └─ ${commandCount} commands\n`;
+				commands.forEach(name => {
+					helpMessage += `│ /${name}\n`;
 				});
-				
-				helpMessage += '├─────────────────────◊\n';
-				helpMessage += '│ 💡 Reply with category number\n';
-				helpMessage += '│    to see commands\n';
-				helpMessage += '│ 💡 Type !help <cmdname>\n';
-				helpMessage += '│    for direct command info\n';
+
 				helpMessage += '╰─────────────────────◊\n';
+				helpMessage += `     Total: ${commands.length} commandes\n`;
 				helpMessage += '        💫 ST_BOT Help Menu';
 
-				const sentMessage = await sendMessage(helpMessage, event.threadID);
-				
-				// Set up onReply for category selection (Stage 1)
-				if (sentMessage) {
-					global.GoatBot.onReply.set(sentMessage.messageID, {
-						commandName: "help",
-						messageID: sentMessage.messageID,
-						author: event.senderID,
-						stage: 1,
-						categories: categoryNames,
-						categoriesData: categories
-					});
-				}
+				await sendMessage(helpMessage, event.threadID);
 			}
 		} catch (error) {
 			console.error('Error generating help message:', error);
