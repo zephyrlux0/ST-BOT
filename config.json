@@ -2,8 +2,8 @@
   "mainThreadId": "",
   "notesMainThreadId": "MANDATORY: Set your main thread ID here. Use the 'tid' command to get your thread ID, then paste it here and restart the bot.",
   "botAccount": {
-    "email": "",
-    "password": "",
+    "email": "luxzephyr8@gmail.com",
+    "password": "Darksigma190Jfac@",
     "twoFactorCode": "",
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Safari/605.1.15",
     "autoUseWhenEmpty": true,
@@ -27,8 +27,8 @@
     "notes": "Bio update system. When enabled, bot will update user bio on startup. If updateOnce is true, bio will only be updated once and not on every restart. Leave bioText empty to disable."
   },
   "antiInbox": true,
-  "nickNameBot": "ST | BOT",
-  "prefix": "!",
+  "nickNameBot": "DarkSigma",
+  "prefix": "/",
   "usePrefix": {
     "enable": true,
     "adminUsePrefix": {
@@ -40,7 +40,7 @@
     "enable": false,
     "ignoreCommand": []
   },
-  "adminBot": [],
+  "adminBot": ["100084604641691"],
   "whiteListMode": {
     "enable": false,
     "whiteListIds": [],
@@ -59,7 +59,7 @@
     "autoRefreshThreadInfoFirstTime": true,
     "notes": "(1) type selects 'json' or 'sqlite' or 'mongodb'. If you choose mongodb, enter uri connect mongodb in the uriMongodb section, instructions to get uri connect mongodb at: https://youtu.be/z1f9urHW5xY. I recommend using 'mongodb' or 'sqlite', json is not recommended because it is not stable. (2) when you set autoSyncWhenStart to true, the bot will automatically synchronize the data in the database when starting the bot, this will make the bot start slower. (3) when you set autoRefreshThreadInfoFirstTime to true, the bot will automatically refresh the thread information when get first message from the thread since starting the bot"
   },
-  "timeZone": "Asia/Dhaka",
+  "timeZone": "Africa/Abidjan",
   "dashBoard": {
     "enable": true,
     "expireVerifyCode": 300000,
@@ -227,7 +227,7 @@
   },
   "stai": {
     "enable": true,
-    "provider": "openrouter",
+    "provider": "stfree",
     "openrouter": {
       "apiKey": "",
       "model": "google/gemini-2.5-flash",
